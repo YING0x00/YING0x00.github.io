@@ -1,0 +1,135 @@
+---
+layout:     post   				    # 使用的布局（不需要改）
+title:      Git基本指令 				# 标题 
+subtitle:   Git从建库到同步的一些常用指令 #副标题
+date:       2020-11-11 				# 时间
+author:     YING 						# 作者
+header-img: img/post-bg-hacker.jpg 	#这篇文章标题背景图片
+catalog: true 						# 是否归档
+tags:								#标签
+    - Git
+---
+
+# Git基本指令
+
+---
+
+##### 安装Git  (linux)
+
+> `git`查看是否安装Git
+
+> `sudo apt-get install git`安装git
+
+##### 关联用户名和邮箱
+
+> `git config --global user.name "yourname"`输入用户名
+
+> `git config --global user.email "youremail"`输入用户名邮箱
+
+> --global 参数：这台机器上所有的Git仓库都会使用这个配置
+
+##### 创建版本库repository(linux)(windows目录不能含有中文)
+
+> `mrdir learngit`
+
+> `cd learngit`
+
+> `pwd`
+
+##### 把创建的版本库变成Git可以管理的仓库
+
+> ` git init`
+
+> `ls  - ah`
+
+##### 把文件添加到版本库
+
+> `git add <file>`
+
+> `git commit -m <message>`
+
+##### 时光机穿梭
+
+> `git diff`查看具体修改内容
+> `git status`查看当前仓库的状态
+
+##### 版本回退
+
+> `git log`查看修改内容（q退出）
+>
+> `git reset --hard  HEAD^`
+>
+> `git reset --hard  xxxxx`（回到最新版本）（命令行窗口未关闭）
+>
+> `git reflo`g 记录你的每一次命令
+
+##### 工作区working directory
+
+##### 版本库repository(.git目录)
+
+>暂存区stage(index)
+
+>> `git add <file>`
+
+> master
+
+> > `git commit -m <message>`
+
+##### 管理修改
+
+> `git diff HEAD -- filename`查看工作区和版本库里面最新版本的区别
+
+##### 撤销修改
+
+> `git checkout -- filename`可以丢弃工作区的修改：
+> 一种是`file`自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；
+> 一种是`file`已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
+> 总之，就是让这个文件回到最近一次`git commit`或`git add`时的状态。
+
+> `git reset HEAD <file>`可以把暂存区的修改撤销掉（unstage），重新放回工作区
+
+>场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令`git checkout -- file`。
+>场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令`git reset HEAD <file>`，就回到了场景1，第二步按场景1操作。
+>场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考[版本回退](https://www.liaoxuefeng.com/wiki/896043488029600/897013573512192)一节，不过前提是没有推送到远程库。
+
+
+
+##### 删除文件
+
+> `rm file`删除工作区文件
+> 工作区和版本库就不一致了，`git status`命令会立刻告诉你哪些文件被删除了
+
+> 一是确实要从版本库中删除该文件，那就用命令`git rm`删掉，并且`git commit`
+
+> 二是删错了，因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本：
+> `git checkout -- test.tx`
+
+> 注意：从来没有被添加到版本库就被删除的文件，是无法恢复的！
+> 命令`git rm`用于删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失**最近一次提交后你修改的内容**。
+
+##### 远程仓库
+
+> 第1步：创建SSH Key。在用户主目录下，看看有没有.ssh目录，如果有，再看看这个目录下有没有`id_rsa`和`id_rsa.pub`这两个文件，如果已经有了，可直接跳到下一步。如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key：
+> `ssh-keygen -t rsa -C "youremail@example.com"`
+
+
+> 第2步：登陆GitHub，打开“Account settings”，“SSH Keys”页面：
+> 然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴`id_rsa.pub`文件的内容：
+
+##### 添加远程库
+
+> 创建一个仓库，把一个已有的本地仓库与之关联，然后把本地仓库的内容推送到GitHub仓库。f
+> ` git remote add origin git@github.com:YING0x00/learngit.git`
+
+> 把本地库的所有内容推送到远程库上：
+> ` git push -u origin master`
+
+##### 从远程库克隆
+
+​		勾选`Initialize this repository with a README`，这样GitHub会自动为我们创建一个`README.md`文件。创建完毕后，可以看到`README.md`文件：
+
+> `git clone git@github.com:YIING0x00/gitskills.git`
+
+##### 推送branch提交
+
+> ` git push origin branchname`
