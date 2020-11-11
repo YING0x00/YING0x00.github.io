@@ -1,10 +1,10 @@
 # Site settings
-title: YING0x00 Blog
-SEOTitle: YING0x00的博客 | YING0x00 Blog
+title: YING Blog
+SEOTitle: YING的博客 | YING Blog
 header-img: img/post-bg-hacker.jpg
 email: 1919363657@qq.com
 description: "HACKING IS BEAUTIFUL."
-keyword: "YING0x00, YING0x00 Blog, YING0x00的博客, HACK,HACKER"
+keyword: "YING0x00, YING0x00 Blog, YING的博客, HACK,HACKER"
 url: "http://ying0x00.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/YING0x00/YING0x00.github.io" # you code repository
